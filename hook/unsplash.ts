@@ -7,16 +7,16 @@ export const useUnsplash = (query: string) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!query) return; // Avoid unnecessary fetches
+    // if (!query) return; 
 
     const fetchImages = async () => {
       setLoading(true);
       setError(null);
       try {
         const endpoint = query
-          ? `/search/photos?query=${encodeURIComponent(query)}`
-          : "/photos";
-
+        ? `/search/photos?query=${encodeURIComponent(query)}`
+        : "/photos";
+       console.log(endpoint)
         const res = await as.get(endpoint);
         setImages(query ? res.data.results : res.data);
       } catch (err) {

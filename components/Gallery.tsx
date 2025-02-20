@@ -1,5 +1,4 @@
 "use client";
-
 import { useView } from "@/store/useView";
 import { useState } from "react";
 import Column from "./Column";
@@ -11,7 +10,7 @@ import Modal from "./Modal";
 const Gallery = () => {
   const { view } = useView();
   const { query } = useQuery();
-  const { images, loading, error } = useUnsplash(query); // ✅ Correct usage
+  const { images, loading, error } = useUnsplash(query); 
 
   const [selectedImage, setSelectedImage] = useState<UnsplashPhoto | null>(null);
 
@@ -25,7 +24,7 @@ const Gallery = () => {
 
   return (
     <main>
-      {loading && <p>Loading images...</p>}
+      {loading && <p className="text-white text-center text-2xl">Loading images...</p>}
       {error && <p className="text-red-500">{error}</p>}
       {!loading && !error && <div>{renderView()}</div>}
       <Modal isOpen={!!selectedImage} closeModal={closeModal} image={selectedImage} />
