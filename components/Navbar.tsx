@@ -1,7 +1,6 @@
 "use client"
 import { useView } from "@/store/useView";
-import { Grid3x3, RowsIcon, Search } from "lucide-react";
-import { useState } from "react";
+import { Grid3x3, RowsIcon } from "lucide-react";
 import { SearchComp } from "./Search";
 
 const Navbar = () => {

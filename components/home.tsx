@@ -1,22 +1,19 @@
 "use client";
 
 import { useView } from "@/store/useView";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Column from "./Column";
 import Grid from "./Grid";
-import { useUnsplash } from "@/lib/unsplash";
+import { useUnsplash } from "@/hook/unsplash";
 import { useQuery } from "@/store/useQuery";
 import Modal from "./Modal";
 
-export default function Gallery() {
-  const [images, setImages] = useState<UnsplashPhoto[]>([]);
-  const [selectedImage, setSelectedImage] = useState<UnsplashPhoto | null>(null);
+const Gallery = () => {
   const { view } = useView();
   const { query } = useQuery();
+  const { images, loading, error } = useUnsplash(query); // ✅ Correct usage
 
-  useEffect(() => {
-    useUnsplash(query).then(setImages);
-  }, [query]);
+  const [selectedImage, setSelectedImage] = useState<UnsplashPhoto | null>(null);
 
   const openModal = (image: UnsplashPhoto) => setSelectedImage(image);
   const closeModal = () => setSelectedImage(null);
@@ -28,8 +25,12 @@ export default function Gallery() {
 
   return (
     <main>
-      <div className="">{renderView()}</div>
+      {loading && <p>Loading images...</p>}
+      {error && <p className="text-red-500">{error}</p>}
+      {!loading && !error && <div>{renderView()}</div>}
       <Modal isOpen={!!selectedImage} closeModal={closeModal} image={selectedImage} />
     </main>
   );
-}
+};
+
+export default Gallery;

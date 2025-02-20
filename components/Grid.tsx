@@ -1,4 +1,3 @@
-import Image from "next/image";
 import TiltedCard from "./Tcard";
 
 const Grid = ({ images, openModal }: { images: UnsplashPhoto[]; openModal: (image: UnsplashPhoto) => void }) => {

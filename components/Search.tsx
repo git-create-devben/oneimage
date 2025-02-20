@@ -1,5 +1,4 @@
 "use client"
-import Form from "next/form"
 import { Search } from "lucide-react";
 import { useQuery } from "@/store/useQuery";
 import { useState } from "react";

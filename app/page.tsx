@@ -1,4 +1,4 @@
-import Gallery from "@/components/home";
+import Gallery from "@/components/Home";
 
 export default function Home() {
 
